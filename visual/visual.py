@@ -24,10 +24,10 @@ class Graph(object):
 		returns:
 			iplot
 		"""
-		t = df['Timestamp']
+		t = df['Time']
 		gx,gy,gz = df['Gx'],df['Gy'],df['Gz']
 		ax,ay,az = df['Ax'],df['Ay'],df['Az']
-		
+
 		# gyro plot
 		gx = go.Scatter(
 			x= t,
@@ -61,19 +61,21 @@ class Graph(object):
 			y= az,
 			name='az'
 		)
+
+		fig1 = tools.make_subplots(rows=3,cols=1,shared_xaxes=True)
+		fig2 = tools.make_subplots(rows=3,cols=1,shared_xaxes=True)
 		
-		fig = tools.make_subplots(rows=3,cols=2,shared_xaxes=True)
-		
-		fig.append_trace(gx, 1, 1)
-		fig.append_trace(gy, 2, 1)
-		fig.append_trace(gz, 3, 1)
-		
-		fig.append_trace(ax, 1, 2)
-		fig.append_trace(ay, 2, 2)
-		fig.append_trace(az, 3, 2)
-		
-		fig['layout'].update(height=600, width=800,
-						 title='Gyroscope and Accelerometer data plot')
-		
-		return iplot(fig)
-			
+		fig1.append_trace(gx, 1, 1)
+		fig1.append_trace(gy, 2, 1)
+		fig1.append_trace(gz, 3, 1)
+
+		fig2.append_trace(ax, 1, 1)
+		fig2.append_trace(ay, 2, 1)
+		fig2.append_trace(az, 3, 1)
+
+		fig1['layout'].update(height=600, width=800,
+						 title='Gyroscope data plot')
+		fig2['layout'].update(height=600, width=800,
+						 title='Accelrometer data plot')
+
+		return (iplot(fig1),iplot(fig2))
