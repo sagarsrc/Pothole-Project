@@ -15,10 +15,9 @@ init_notebook_mode(connected=True)
 class VerifyLabels(object):
 	"""Class for Verifying Labels and samples"""
 	def __init__(self):
-		return
-
 		pass
 
+	
 	def verify_samples(self,df,col_name,sample_index):
 		"""
 		Verify downsampled points
@@ -31,7 +30,7 @@ class VerifyLabels(object):
 		"""
 		t = df['Time']
 		y_whole = df[col_name]
-		
+		# print(t)
 		Signal = go.Scatter(
 			x= t,
 			y= y_whole,
@@ -39,11 +38,16 @@ class VerifyLabels(object):
 			mode='lines'
 		)
 		
-
-
+		result = t.searchsorted(value = sample_index)
+		# print(result)
+		
+		# print(df.iloc[result])
+		
+		sample_df = df.iloc[result]
+		
 		Samples = go.Scatter(
-			x = df['Time'].loc[sample_index],
-			y= df[col_name].loc[sample_index],
+			x = sample_df['Time'],
+			y= sample_df[col_name],
 			name='samples',
 			mode='markers'
 		)
