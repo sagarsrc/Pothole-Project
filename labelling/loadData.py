@@ -18,6 +18,12 @@ class LoadData(object):
 		Method for loading Data from folder
 		args:
 			folder_name : name of folder in data folder
+			
+			accepted folder names:
+
+			plain_road            plain_road_potholes
+			plain_road_marked_sb  plain_road_unmarked_sb
+
 		return:
 			DataFrame of all csv files
 		"""
@@ -34,6 +40,8 @@ class LoadData(object):
 		print(path)
 
 		l_ = os.listdir()
+		l_ = sorted(l_)
+
 		print(l_)
 		df = pd.DataFrame(columns=['Time','Gx','Gy','Gz','Ax','Ay','Az'])
 		for i in l_:

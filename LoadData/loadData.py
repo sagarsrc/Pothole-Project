@@ -40,6 +40,8 @@ class LoadData(object):
 		print(path)
 
 		l_ = os.listdir()
+		l_ = sorted(l_)
+
 		print(l_)
 		df = pd.DataFrame(columns=['Time','Gx','Gy','Gz','Ax','Ay','Az'])
 		for i in l_:
