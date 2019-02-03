@@ -227,11 +227,13 @@ class VerifyLabels(object):
 		# print(df.iloc[result])
 		# sample_df = df.iloc[result]
 
-		label1X = labelled_ev_vals_df[labelled_ev_vals_df['label']==1]['event']
-		label1Y = labelled_ev_vals_df[labelled_ev_vals_df['label']==1]['value']
+		a = labelled_ev_vals_df['label'].unique()
+
+		label1X = labelled_ev_vals_df[labelled_ev_vals_df['label']==a[1]]['event']
+		label1Y = labelled_ev_vals_df[labelled_ev_vals_df['label']==a[1]]['value']
 		
-		label0X = labelled_ev_vals_df[labelled_ev_vals_df['label']==0]['event']
-		label0Y = labelled_ev_vals_df[labelled_ev_vals_df['label']==0]['value']
+		label0X = labelled_ev_vals_df[labelled_ev_vals_df['label']==a[0]]['event']
+		label0Y = labelled_ev_vals_df[labelled_ev_vals_df['label']==a[0]]['value']
 		
 		
 		lb1 = go.Scatter(
